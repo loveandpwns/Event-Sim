@@ -554,4 +554,4 @@ Save the script.
 
 ---
 
-> *Event-Sim © 2025 - Created by loveandpwns
+> *Event-Sim © 2025  -  Created by loveandpwns
