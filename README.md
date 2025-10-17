@@ -39,7 +39,7 @@ The simulator organizes tributes into districts (groups). You can choose from pr
 
 **Preset sizes:**
 
-* **2 tributes per district** (default)  Standard format
+* **2 tributes per district** (default)
 * **3 tributes per district**  Larger districts
 * **4 tributes per district**  Even larger groups
 * **6 tributes per district**  Maximum preset size
@@ -122,7 +122,7 @@ Please visit [Event-Writer](https://github.com/loveandpwns/Event-Writer) for a t
 
 ## Basic Event Structure
 
-Event's are written in a text file that is based off of [Event Manager](https://hgtools.neocities.org/static/EventManagerHelp)
+Events are written in a text file that is based off of [Event Manager](https://hgtools.neocities.org/static/EventManagerHelp)
 
 Every event follows a strict format that the event loader parses line by line:
 
