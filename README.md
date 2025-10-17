@@ -1,5 +1,5 @@
-# Event-Sim Coming Soon
-A Python-based event simulation engine featuring tribute management, flagged player interactions, and customizable event pools with complex branching logic, continuity systems, dead player interactions, and more. Heavily inspired by [Bransteele](https://brantsteele.net/hungergames/reaping.php)
+# Event-Sim, Coming Soon!
+A Python-based event simulation engine. Heavily inspired by [Bransteele](https://brantsteele.net/hungergames/reaping.php).
 
 ---
 
@@ -21,7 +21,7 @@ A Python-based event simulation engine featuring tribute management, flagged pla
 
 ## Code Database
 
-Complete collection of community-created Hunger Games event sets from the [Code Database](https://hgtools.neocities.org/static/codes), converted to standard format for use with this sim.
+Complete collection of community created Hunger Games event sets from the [Code Database](https://hgtools.neocities.org/static/codes), converted to standard format for use with this sim. 
 
 ### Download
 
@@ -30,6 +30,8 @@ Complete collection of community-created Hunger Games event sets from the [Code 
 ---
 
 # Writing Events
+
+Please visit [Event-Writer](https://github.com/loveandpwns/Event-Writer) for a tool that helps you write events. 
 
 ## Basic Event Structure
 
@@ -458,11 +460,11 @@ When creating tributes, you can specify a bond partner by entering their tribute
 
 ### Important Notes
 
-- Bonds increase pairing probability but don't guarantee it
-- Bonds currently only work in two player pairings
-- If a bonded partner dies or gets different continuity flags, they may not pair
-- Bonds work independently of districts
-- Simple mode is designed for balanced gameplay without forced pairings
+- Bonds increase pairing probability. Nothing is guranteed.
+- Bonds currently only work in two player pairings.
+- If a bonded partner dies or gets different continuity flags, they may not pair.
+- Bonds work independently of districts.
+- Simple mode is designed for balanced gameplay without forced pairings.
 
 ### Advanced Mode (Coming Soon)
 
