@@ -5,14 +5,14 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 
 ## Table of Contents
 - [Code Database](#code-database)
+- [Districts and Tribute Organization](#districts-and-tribute-organization)
+- [Bonds](#bonds)
 - [Writing Events](#writing-events)
 - [Fatal Events](#fatal-events)
 - [Dead Tribute Flags](#dead-tribute-flags)
 - [Best Practices](#best-practices)
 - [Summary of Syntax](#summary-of-syntax)
 - [Event Selection and Fallbacks](#event-selection-and-fallbacks)
-- [Districts and Tribute Organization](#districts-and-tribute-organization)
-- [Bonds](#bonds)
 - [Virginia's Userscript Compatibility](#virginias-userscript-compatibility)
 - [Coming Soon](#coming-soon)
 - [Contact](#contact)
@@ -28,6 +28,91 @@ Complete collection of community created Hunger Games event sets from the [Code 
 **[Download All Codes (2.6 MB)](https://envs.sh/ROn.zip)**
 
 **[Default Code](https://envs.sh/15A.zip )**
+
+---
+
+## Districts and Tribute Organization
+
+### District Sizes
+
+The simulator organizes tributes into districts (groups). You can choose from preset sizes or create custom districts:
+
+**Preset sizes:**
+
+* **2 tributes per district** (default)  Standard format
+* **3 tributes per district**  Larger districts
+* **4 tributes per district**  Even larger groups
+* **6 tributes per district**  Maximum preset size
+
+**Custom mode:**
+
+* Assign any tribute to any district number
+* Create uneven district sizes (e.g., District 1 has 2 tributes, District 2 has 5)
+* Maximum flexibility for non-standard simulations
+
+### How to Set District Size
+
+1. In the tribute input screen, locate the **"District Size"** dropdown menu
+2. Select your preferred option:
+   * `2`, `3`, `4`, or `6` for automatic equal distribution
+   * `Custom` for manual district assignment
+
+**Automatic mode:** Tributes are assigned to districts sequentially based on the size you choose. For example, with 12 tributes and district size 2:
+
+* District 1: Tributes 1–2
+* District 2: Tributes 3–4
+* District 3: Tributes 5–6
+* And so on...
+
+**Custom mode:** Each tribute row will have an enabled district dropdown where you can manually select which district (1 through total number of tributes) that tribute belongs to.
+
+### Custom District Names
+
+You can customize district names under the **Customize** tab. Districts will display either:
+
+* Your custom name (if specified)
+* `District [number]` (default)
+
+**Example:** Instead of "District 1", you could display "Faction X" or "The Gung Ho Guns" or any custom label.
+
+To set custom names:
+
+1. Click the **Customize** button in the sidebar
+2. Navigate to the district naming section
+3. Enter custom names for each district number
+
+---
+
+## Bonds
+
+The simulator supports a simple bond system that increases the likelihood of specific tributes appearing in events together.
+
+### How It Works
+
+When creating tributes, you can specify a bond partner by entering their tribute number in the "Bond" field. Bonded tributes have a **50x higher chance** of being selected for the same event when both are:
+- Alive
+- Available (not already used in another event that turn)
+- Compatible with the event requirements
+
+### Setting Up Bonds
+
+1. Enter the number of tributes and click "Confirm"
+2. For each tribute, enter their bond partner's number in the "Bond" field
+   - Example: For Tribute 1 to bond with Tribute 2, enter "2" in Tribute 1's bond field and "1" in Tribute 2's bond field
+3. Bonds are manual - you must enter both sides of the partnership
+4. Click "Confirm All Tributes" to finalize
+
+### Important Notes
+
+- Bonds increase pairing probability. Nothing is guaranteed.
+- Bonds currently only work in two player pairings.
+- If a bonded partner dies or gets different continuity flags, they may not pair.
+- Bonds work independently of districts.
+- Simple mode is designed for balanced gameplay without forced pairings.
+
+### Advanced Mode (Coming Soon)
+
+A future update will add dedicated bond events that **require** both partners to be alive and will guarantee they appear together for specific story moments.
 
 ---
 
@@ -307,6 +392,8 @@ The last two lines indicate:
 * Line 4: **Killer** (Player1 = position 1)
 * Line 5: **Victim** (Player2 = position 2)
 
+---
+
 ## Dead Tribute Flags
 
 Flags work on dead tributes too. Dead tributes retain all their flags after death, allowing ghost events to reference their past.
@@ -339,6 +426,8 @@ Deadplayer1 now has the `cursed` flag and can appear in future events that requi
 
 See the [Summary of Syntax](#summary-of-syntax) section for all dead tribute flag syntax options.
 
+---
+
 ## Best Practices
 
 * **Balance flagged and unflagged events** Too many flag requirements can starve the event pool
@@ -346,6 +435,8 @@ See the [Summary of Syntax](#summary-of-syntax) section for all dead tribute fla
 * **Test continuity chains** Ensure flag progressions make logical sense
 * **Vary participant counts** Mix solo events with group events for good gameplay
 * **Consider flag persistence** Decide when flags should carry forward vs. clear after use
+
+---
 
 ## Summary of Syntax
 
@@ -379,6 +470,8 @@ See the [Summary of Syntax](#summary-of-syntax) section for all dead tribute fla
 | `D` | `D 1` | One dead tribute needed |
 | `D` | `D 2` | Two dead tributes needed |
 
+---
+
 ## Event Selection and Fallbacks
 
 The event loader prioritizes events in this order:
@@ -391,87 +484,7 @@ The event loader prioritizes events in this order:
 
 If a tribute has flags but no matching flagged events exist, they'll participate in unflagged events instead. To avoid repetitive fallback scenarios, maintain a diverse pool of both flagged and unflagged events.
 
-## Districts and Tribute Organization
-
-### District Sizes
-
-The simulator organizes tributes into districts (groups). You can choose from preset sizes or create custom districts:
-
-**Preset sizes:**
-
-* **2 tributes per district** (default)  Standard format
-* **3 tributes per district**  Larger districts
-* **4 tributes per district**  Even larger groups
-* **6 tributes per district**  Maximum preset size
-
-**Custom mode:**
-
-* Assign any tribute to any district number
-* Create uneven district sizes (e.g., District 1 has 2 tributes, District 2 has 5)
-* Maximum flexibility for non-standard simulations
-
-### How to Set District Size
-
-1. In the tribute input screen, locate the **"District Size"** dropdown menu
-2. Select your preferred option:
-   * `2`, `3`, `4`, or `6` for automatic equal distribution
-   * `Custom` for manual district assignment
-
-**Automatic mode:** Tributes are assigned to districts sequentially based on the size you choose. For example, with 12 tributes and district size 2:
-
-* District 1: Tributes 1–2
-* District 2: Tributes 3–4
-* District 3: Tributes 5–6
-* And so on...
-
-**Custom mode:** Each tribute row will have an enabled district dropdown where you can manually select which district (1 through total number of tributes) that tribute belongs to.
-
-### Custom District Names
-
-You can customize district names under the **Customize** tab. Districts will display either:
-
-* Your custom name (if specified)
-* `District [number]` (default)
-
-**Example:** Instead of "District 1", you could display "Faction X" or "The Gung Ho Guns" or any custom label.
-
-To set custom names:
-
-1. Click the **Customize** button in the sidebar
-2. Navigate to the district naming section
-3. Enter custom names for each district number
-
-## Bonds
-
-The simulator supports a simple bond system that increases the likelihood of specific tributes appearing in events together.
-
-### How It Works
-
-When creating tributes, you can specify a bond partner by entering their tribute number in the "Bond" field. Bonded tributes have a **50x higher chance** of being selected for the same event when both are:
-- Alive
-- Available (not already used in another event that turn)
-- Compatible with the event requirements
-
-### Setting Up Bonds
-
-1. Enter the number of tributes and click "Confirm"
-2. For each tribute, enter their bond partner's number in the "Bond" field
-   - Example: For Tribute 1 to bond with Tribute 2, enter "2" in Tribute 1's bond field and "1" in Tribute 2's bond field
-3. Bonds are manual - you must enter both sides of the partnership
-4. Click "Confirm All Tributes" to finalize
-
-### Important Notes
-
-- Bonds increase pairing probability. Nothing is guaranteed.
-- Bonds currently only work in two player pairings.
-- If a bonded partner dies or gets different continuity flags, they may not pair.
-- Bonds work independently of districts.
-- Simple mode is designed for balanced gameplay without forced pairings.
-
-### Advanced Mode (Coming Soon)
-
-A future update will add dedicated bond events that **require** both partners to be alive and will guarantee they appear together for specific story moments.
-
+---
 
 ## Virginia's Userscript Compatibility
 
@@ -485,13 +498,13 @@ The original Virginia's script needs two small changes to work with our simulato
 
 Find this exact line in the script:
 
-```javascript
+```
 GM_setValue("imgsStr", imgsStr.slice(0, -1));
 ```
 
 **Add these lines immediately after it:**
 
-```javascript
+```
 GM_setClipboard(
     GM_getValue("nomsStr") + "\n" + 
     GM_getValue("gensStr") + "\n" + 
@@ -504,13 +517,13 @@ alert("Tribute data copied to clipboard!");
 
 Find this exact line near the top of the script:
 
-```javascript
+```
 // @grant       GM_getValue
 ```
 
 **Add this line immediately after it:**
 
-```javascript
+```
 // @grant       GM_setClipboard
 ```
 
@@ -530,6 +543,7 @@ Save the script.
 | **Advanced Bonds** | Advanced bond system. |
 | **Complex District Events** | District or faction-specific events that evolve based on shared traits and history. |
 | **Extra Events** | Support for Feast, Arena, and other special types of events. |
+
 ---
 
 ## Contact
