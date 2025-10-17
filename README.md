@@ -1,5 +1,5 @@
 # Event-Sim, Coming Soon!
-A Python-based event simulation engine. Heavily inspired by [Bransteele](https://brantsteele.net/hungergames/reaping.php).
+A Python based event simulation engine. Heavily inspired by [Bransteele](https://brantsteele.net/hungergames/reaping.php).
 
 ---
 
@@ -25,7 +25,9 @@ Complete collection of community created Hunger Games event sets from the [Code 
 
 ### Download
 
-**[Download All Events (2.6 MB)](https://envs.sh/ROn.zip)**
+**[Download All Codes (2.6 MB)](https://envs.sh/ROn.zip)**
+
+**[Default Code](https://envs.sh/15A.zip )**
 
 ---
 
@@ -460,7 +462,7 @@ When creating tributes, you can specify a bond partner by entering their tribute
 
 ### Important Notes
 
-- Bonds increase pairing probability. Nothing is guranteed.
+- Bonds increase pairing probability. Nothing is guaranteed.
 - Bonds currently only work in two player pairings.
 - If a bonded partner dies or gets different continuity flags, they may not pair.
 - Bonds work independently of districts.
