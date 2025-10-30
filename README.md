@@ -104,11 +104,52 @@ When creating tributes, you can specify a bond partner by entering their tribute
 
 ### Important Notes
 
-- Bonds increase pairing probability. Nothing is guaranteed.
-- Bonds currently only work in two player pairings.
-- If a bonded partner dies or gets different continuity flags, they may not pair.
+- Bonds increase the probability of tributes appearing in events together. Nothing is guaranteed.
+- Bonds currently only apply to two-player pairings.
+- Bonded tributes may not pair if one dies or acquires different continuity flags.
 - Bonds work independently of districts.
+- Bonded tributes are not immune to fatal events together or individually.
+- Bonds do not provide any immunity or protection mechanics.
+- Bonded tribute win-rates are not affected by flags.
 - Simple mode is designed for balanced gameplay without forced pairings.
+
+### Bond System Balance Update - October 30 2025
+
+This investigation started after multiple people expressed concerns about the bond system. Several users indicated that they thought the bond system could be biased or detrimental to the outcome of the simulation. These concerns warranted extended testing as keeping the games as fair as possible is mandatory.
+
+Since receiving this feedback, more than 40.4 million simulations have been run to validate the bond system's neutrality. That's approximately 930 million individual tribute deaths processed across hundreds of different test configurations.
+
+The testing confirmed the users intuitions were correct. The bond system had a bias. Though the bias was small and most would never notice it, it had to be fixed.
+
+After running an initial 10 million simulations with 6 tributes, it was determined that there was a measurable 3.86 to 4.39 percentage point penalty for bonded pairs. The root cause was in the participant selection algorithm where the same weighted distribution was being applied to both normal and fatal events. This created an effect where bonded tributes would eliminate each other at higher rates rather than spreading eliminations across the entire tribute pool.
+
+The fix isolated the weighting mechanic to non-fatal events only.
+
+Validation testing continued with multiple different combinations of tests. Results from 30 million additional simulations:
+
+#### 6-Tribute Games:
+- Neutral expectation for a bonded duo: 33.333%
+- Observed with 1 bonded pair: 33.799% (advantage: +0.466 pp to the pair, +0.233 pp per tribute)
+- Observed with 2 bonded pairs: 67.197% vs 66.667% neutral (advantage: +0.133 pp per tribute)
+- 3 bonded pairs: 0.000 pp difference (everyone is bonded)
+
+#### 24-Tribute Games:
+- Neutral expectation for a bonded duo: 8.333%
+- Observed with 1 bonded pair: 8.719% (advantage: +0.386 pp to the pair, +0.193 pp per tribute)
+- Observed with 2 bonded pairs: 17.348% vs 16.667% neutral (advantage: +0.170 pp per tribute)
+- 3 bonded pairs: 0.000 to 0.012 pp difference
+
+The original 3.86 to 4.39 percentage point penalty (measured in 6-tribute games) has been eliminated. 
+
+#### What This Means for YOU as a Player
+
+**After the fix:**
+- Expected wins per 100 games (single tribute): 4.17
+- Actual wins with bond: 4.36
+- Extra wins from bond: 0.19 wins out of 100 games
+- Impact: you will not notice this in your lifetime
+
+The remaining variance of 0.19 to 0.23 percentage points per bonded tribute (or 0.4 to 0.9 percentage points for entire bonded groups) is a small practical effect unavoidable without removing the narrative benefits of the bond system entirely. If you see this as an issue, touch grass.
 
 ### Advanced Mode (Coming Soon)
 
