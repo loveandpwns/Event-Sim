@@ -7,6 +7,7 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 - [Code Database](#code-database)
 - [Districts and Tribute Organization](#districts-and-tribute-organization)
 - [Bonds](#bonds)
+- [Multi Win](#multi-win)
 - [Writing Events](#writing-events)
 - [Fatal Events](#fatal-events)
 - [Dead Tribute Flags](#dead-tribute-flags)
@@ -154,6 +155,31 @@ The remaining variance of 0.19 to 0.23 percentage points per bonded tribute (or 
 ### Advanced Mode (Coming Soon)
 
 A future update will add dedicated bond events that **require** both partners to be alive and will guarantee they appear together for specific story moments.
+
+---
+
+## Multi Win
+
+The simulator supports shared victory conditions, allowing multiple tributes to win together based on districts or bonds.
+
+### Shared Victory Modes
+
+- **Victory by District**: If all remaining tributes are from the same district, they share the victory
+- **Victory by Bonds**: If all remaining tributes are mutually bonded to each other, they share the victory
+- **Combined Mode**: Enable both toggles to allow either condition to trigger a multi-win
+
+### How to Use
+
+1. In the main setup screen, set the **"Multi-Win"** dropdown to **"Yes"**
+
+2. When Multi-Win is enabled, two checkboxes appear:
+- **Victory by District**: Check this to allow district based shared victories
+- **Victory by Bonds**: Check this to allow bond based shared victories
+- You can enable one, both, or neither (if neither is checked, multi-win is effectively disabled)
+
+3. Set up your tributes normally using districts and/or bonds
+
+4. Run the simulation, the game will automatically end when all surviving tributes meet one of the enabled victory conditions
 
 ---
 
