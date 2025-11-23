@@ -7,6 +7,7 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 - [Code Database](#code-database)
 - [Districts and Tribute Organization](#districts-and-tribute-organization)
 - [Bonds](#bonds)
+- [Faction Mode](#faction-mode)
 - [Multi Win](#multi-win)
 - [Writing Events](#writing-events)
 - [Fatal Events](#fatal-events)
@@ -152,9 +153,38 @@ The original 3.86 to 4.39 percentage point penalty (measured in 6-tribute games)
 
 The remaining variance of 0.19 to 0.23 percentage points per bonded tribute (or 0.4 to 0.9 percentage points for entire bonded groups) is a small practical effect unavoidable without removing the narrative benefits of the bond system entirely. If you see this as an issue, touch grass.
 
+---
+
+## Faction Mode
+
+### Simple Mode
+
+Bonds all tributes in the same district. Bonded tributes are 50x more likely to appear together in events.
+
 ### Advanced Mode (Coming Soon)
 
-A future update will add dedicated bond events that **require** both partners to be alive and will guarantee they appear together for specific story moments.
+Assigns faction flags based on district number. Tributes in district 1 get `faction1`, district 2 get `faction2`, etc.
+
+**Faction events use variable substitution:**
+- `faction1:1 faction2:2` means position 1 and position 2 must be from different factions
+- The numbers are variables that map to whatever factions the selected tributes actually have
+- One event works for any faction matchup
+
+**Example events:**
+```
+# requires: faction1:1 faction2:2
+# sets:
+p1 ambushes p2 from an enemy faction.
+```
+```
+# requires: faction1:1 faction1:2
+# sets:
+p1 betrays p2 despite being allies.
+```
+
+**Faction flags are filtered from normal event logic** so existing events continue working without modification.
+
+**How to enable:** Select faction mode from the dropdown before starting simulation.
 
 ---
 
