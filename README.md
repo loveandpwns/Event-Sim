@@ -17,6 +17,7 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 - [Event Selection and Fallbacks](#event-selection-and-fallbacks)
 - [Virginia's Userscript Compatibility](#virginias-userscript-compatibility)
 - [Coming Soon](#coming-soon)
+- [Screenshots](#screenshots)
 - [Contact](#contact)
 
 ---
@@ -641,6 +642,16 @@ Save the script.
 | **Complex District Events** | District or faction-specific events that evolve based on shared traits and history. |
 | **Extra Events** | Support for Feast, Arena, and other special types of events. |
 
+---
+## Screenshots
+
+### Screenshots to highlight the customization features
+![Screenshot 1](https://i.imgur.com/P2aF19y.png)
+![Screenshot 2](https://i.imgur.com/CnSSf63.png)
+![Screenshot 3](https://i.imgur.com/xKYYXYB.png)
+![Screenshot 4](https://i.imgur.com/FLIbM3G.png)
+![Screenshot 5](https://i.imgur.com/LolakDi.png)
+![Screenshot 6](https://i.imgur.com/Etyvrjq.png)
 ---
 
 ## Contact
