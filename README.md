@@ -1,6 +1,8 @@
 # Event-Sim, Coming Soon!
 A Python based event simulation engine. Heavily inspired by [Bransteele](https://brantsteele.net/hungergames/reaping.php).
 
+Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool to help write events for this simulator. 
+
 ---
 
 ## Table of Contents
