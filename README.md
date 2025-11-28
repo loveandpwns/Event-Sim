@@ -656,6 +656,27 @@ Save the script.
 ![Screenshot 6](https://i.imgur.com/Etyvrjq.png)
 ---
 
+# Event-Sim FAQ
+
+## What is this?
+A desktop Hunger Games-style event simulator. Inspired by BrantSteele but with more features and full offline support.
+
+## Is there a rig button?
+No, a rig button does not exist and will never exist. No one has directly asked for one either. You know better than to believe anon fanfiction.
+
+## Can you prove it's not rigged?
+I ran 40+ million simulations validating the bond system alone to ensure fairness. The methodology is in the README.
+
+## I saw some source files. Where's the rest?
+The supporting files are visible. The core engine is compiled. That's intentional.
+
+## How do bonds work?
+Bonded tributes are more likely to appear in events together. It doesn't protect them from dying. It doesn't guarantee anything. It just increases the odds they'll interact.
+
+## Someone is pretending to be you.
+I post in the README. That's it.
+
+---
 ## Contact
 
 **Author:** [loveandpwns](https://github.com/loveandpwns)  
