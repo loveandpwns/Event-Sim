@@ -20,6 +20,7 @@ Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool t
 - [Virginia's Userscript Compatibility](#virginias-userscript-compatibility)
 - [Coming Soon](#coming-soon)
 - [Screenshots](#screenshots)
+- [FAQ](#faq)
 - [Contact](#contact)
 
 ---
@@ -656,7 +657,7 @@ Save the script.
 ![Screenshot 6](https://i.imgur.com/Etyvrjq.png)
 ---
 
-# Event-Sim FAQ
+## FAQ
 
 ## What is this?
 A desktop Hunger Games-style event simulator. Inspired by BrantSteele but with more features and full offline support.
