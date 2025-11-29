@@ -1,7 +1,12 @@
-# Event-Sim, Coming Soon!
+# Event-Sim
 A Python based event simulation engine. Heavily inspired by [Bransteele](https://brantsteele.net/hungergames/reaping.php).
 
 Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool to help write events for this simulator. 
+
+**[Download](https://github.com/loveandpwns/Event-Sim/releases/download/v1.0.0/Simv1.0.0.zip)**
+
+Note: This is only v1, please be patient with features and bugs. Feel free to contact me with any issues.
+- [Contact](#contact)
 
 ---
 
@@ -31,9 +36,9 @@ Complete collection of community created Hunger Games event sets from the [Code 
 
 ### Download
 
-**[Download All Codes (2.6 MB)](https://envs.sh/ROn.zip)**
+**[Download All Codes (2.6 MB)](https://github.com/loveandpwns/Event-Sim/releases/download/Events/all_events.zip)**
 
-**[Default Code](https://envs.sh/15A.zip )**
+**[Default Code](https://github.com/loveandpwns/Event-Sim/releases/download/Defaul_Events/Brant.Default.zip)**
 
 ---
 
