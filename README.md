@@ -3,10 +3,17 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 
 Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool to help write events for this simulator. 
 
-**[Download](https://github.com/loveandpwns/Event-Sim/releases/download/v1.0.0/Simv1.0.0.zip)**
+**[Download Simv1.0.0](https://github.com/loveandpwns/Event-Sim/releases/download/v1.0.0/Simv1.0.0.zip)**
 
 Note: This is only v1, please be patient with features and bugs. Feel free to contact me with any issues.
 - [Contact](#contact)
+
+
+
+
+# Bugs
+
+I am currently aware of a bug involving large sized tribute images and custom backgrounds. I am working on it. For now, try to avoid loading GIF files and use thumbnails when you can. 
 
 ---
 
