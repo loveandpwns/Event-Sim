@@ -18,6 +18,10 @@ Note: This is only v1, please be patient with features and bugs. Feel free to co
 - Dropdown is now enabled for fonts
 - ~~Image handling was broken across the board~~ **Fixed**
 
+
+
+  I am currently tweaking the death rate to make it feel more like what we are familiar with. Please be patient. 
+
 ---
 
 ## Table of Contents
