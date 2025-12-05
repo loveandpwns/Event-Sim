@@ -57,6 +57,9 @@ Complete collection of community created Hunger Games event sets from the [Code 
 
 **[Default Code](https://github.com/loveandpwns/Event-Sim/releases/download/Defaul_Events/Brant.Default.zip)**
 
+**[Default Code With Flags](https://github.com/loveandpwns/Event-Sim/releases/download/Flags/Default.Events.With.Flags-AI.zip)**
+- Default Code With Flags is made entirely with Ai and is untested.
+
 ---
 
 ## Districts and Tribute Organization
