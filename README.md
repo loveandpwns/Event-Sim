@@ -18,6 +18,7 @@ Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool t
 - Death rate system rebalanced
 - Tribute portraits will now display based on the number of tributes specified in event metadata instead of event text
 - Event file has been reuploaded without feast events
+- Event fallback chain revamped 
 
 
 
