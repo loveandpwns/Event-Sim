@@ -4,9 +4,8 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 
 Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool to help write events for this simulator.
 
-**[Download Simv1.1.0](https://github.com/loveandpwns/Event-Sim/releases/download/v1.1.0/Simv1.1.0_co.zip)**
+**[Download Simv1.1.1](https://github.com/loveandpwns/Event-Sim/releases/download/V1.1.1/Simv1.1.1.zip)**
 
-Note: This is only v1, please be patient with features and bugs. Feel free to contact me with any issues.
 
 - [Contact](#contact)
 
@@ -14,14 +13,18 @@ Note: This is only v1, please be patient with features and bugs. Feel free to co
 
 ## Changelog
 
+**Simv1.1.1**
+
+- Death rate system rebalanced
+- Tribute portraits will now display based on the number of tributes specified in event metadata instead of event text
+- Event file has been reuploaded without feast events
+
+
+
 **Simv1.1.0**
-- Dropdown is now enabled for fonts
-- ~~Image handling was broken across the board~~ **Fixed**
-
-
-
-  I am currently tweaking the death rate to make it feel more like what we are familiar with. Please be patient. 
-
+- Added Fonts
+- Better image handling for portraits and backgrounds
+  
 ---
 
 ## Table of Contents
