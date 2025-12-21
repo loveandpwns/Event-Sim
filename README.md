@@ -10,6 +10,12 @@ Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool t
 - [Contact](#contact)
 
 ---
+## IN PROGRESS
+Working on fixing bugs that make the same tribute appear in events multiple times.
+
+Balancing death rate.
+
+New bond selection mechanic.
 
 ## Changelog
 
