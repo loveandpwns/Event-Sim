@@ -10,6 +10,9 @@ Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool t
 - [Contact](#contact)
 
 ---
+## BUGS
+Looking into bugs that make multiples of the same tributes appear in events as well as more death rate balancinng. 
+
 
 ## Changelog
 
