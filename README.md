@@ -4,20 +4,22 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 
 Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool to help write events for this simulator.
 
-**[Download Simv1.1.1](https://github.com/loveandpwns/Event-Sim/releases/download/V1.1.1/Simv1.1.1.zip)**
+**[Download Simv1.1.2](https://github.com/loveandpwns/Event-Sim/releases/download/v1.1.2/Simv1.1.2.zip)**
 
 
 - [Contact](#contact)
 
 ---
 ## IN PROGRESS
-Working on fixing bugs that make the same tribute appear in events multiple times.
-
-Balancing death rate.
 
 New bond selection mechanic.
 
 ## Changelog
+**Simv1.1.2**
+
+- Fixed bug where multiple copies of the same tribute would populate fatal events when the bond mechanic was in use
+- Bond selection during tribute input is now no longer deleted upon adding more tributes 
+
 
 **Simv1.1.1**
 
