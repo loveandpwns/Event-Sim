@@ -11,8 +11,10 @@ Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool t
 
 ---
 ## IN PROGRESS
+**Simv2.0.0**
 
-New bond selection mechanic.
+- Full system overhaul. Coming soon. 
+
 
 ## Changelog
 **Simv1.1.2**
