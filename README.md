@@ -4,7 +4,7 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 
 Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool to help write events for this simulator.
 
-**[Download Simv1.1.2](https://github.com/loveandpwns/Event-Sim/releases/download/v1.1.2/Simv1.1.2.zip)**
+**Please wait for v2. Download Removed.**
 
 
 - [Contact](#contact)
