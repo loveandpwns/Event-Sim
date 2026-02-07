@@ -1,4 +1,4 @@
-markdown
+
 # Event-Sim
 
 A Python based event simulation engine. Heavily inspired by [Bransteele](https://brantsteele.net/hungergames/reaping.php).
