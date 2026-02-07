@@ -1,47 +1,63 @@
+markdown
 # Event-Sim
 
 A Python based event simulation engine. Heavily inspired by [Bransteele](https://brantsteele.net/hungergames/reaping.php).
 
-Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool to help write events for this simulator.
-
 **Please wait for v2. Download Removed.**
-
 
 - [Contact](#contact)
 
 ---
+
 ## IN PROGRESS
 **Simv2.0.0**
 
-- Full system overhaul. Coming soon. 
-
+- Full system overhaul.
+- Complete UI rewrite. Dark theme, modern layout, cleaner workflow.
+- Complete engine rewrite. 
+- EventWriter is now built into the main application.
+- Flag system with multi-phase event chains. Events can require and set flags, creating narrative arcs that span multiple phases. A tribute can find a weapon in Day 1 and use it to kill someone in Night 2.
+- AI commentator.
+- Auto-host mode. Posts screenshots and AI commentary directly to 4chan threads using a Pass and API key. 
+- Logs mode. Test auto host commentary without posting to a thread. Type "Logs" in the thread field.
+- Image loading progress. See which images are loading and how many remain. Right click a tribute's portrait to reload their image.
+- Visual bond system. Drag and drop tribute portraits to create bonds in the reaping preview.
+- Bond protection mode. Bonded tributes can optionally never kill each other.
+- Shared victory conditions. Victory by district, by bonds, or both.
+- Faction mode with automatic bonding and faction flags.
+- Season scraper. Import tributes and events from BrantSteele Classic and Experimental sims using a season code or URL.
+- Full customization system. Fonts, colors, borders, backgrounds, text effects, shadows, outlines, and more.
+- Death pacing system with budget and pressure controls. Seven difficulty modes from Low to Annihilation.
+- Ghost events with configurable frequency. Seven ghost modes from None to High.
+- No tribute name length limit.
+- Every setting tested to ensure no tribute, bonded pair, or flag chain has an unfair advantage.
 
 ## Changelog
+
 **Simv1.1.2**
 
 - Fixed bug where multiple copies of the same tribute would populate fatal events when the bond mechanic was in use
-- Bond selection during tribute input is now no longer deleted upon adding more tributes 
-
+- Bond selection during tribute input is now no longer deleted upon adding more tributes
 
 **Simv1.1.1**
 
 - Death rate system rebalanced
 - Tribute portraits will now display based on the number of tributes specified in event metadata instead of event text
 - Event file has been reuploaded without feast events
-- Event fallback chain revamped 
-
-
+- Event fallback chain revamped
 
 **Simv1.1.0**
+
 - Added Fonts
 - Better image handling for portraits and backgrounds
-  
+
 ---
 
 ## Table of Contents
 - [Code Database](#code-database)
 - [Districts and Tribute Organization](#districts-and-tribute-organization)
 - [Bonds](#bonds)
+- [Bond Protection](#bond-protection)
 - [Faction Mode](#faction-mode)
 - [Multi Win](#multi-win)
 - [Writing Events](#writing-events)
@@ -50,8 +66,11 @@ Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool t
 - [Best Practices](#best-practices)
 - [Summary of Syntax](#summary-of-syntax)
 - [Event Selection and Fallbacks](#event-selection-and-fallbacks)
+- [Death Pacing](#death-pacing)
+- [Ghost Events](#ghost-events)
+- [AI Commentator and Auto-Host](#ai-commentator-and-auto-host)
+- [Season Scraper](#season-scraper)
 - [Virginia's Userscript Compatibility](#virginias-userscript-compatibility)
-- [Coming Soon](#coming-soon)
 - [Screenshots](#screenshots)
 - [FAQ](#faq)
 - [Contact](#contact)
@@ -60,7 +79,7 @@ Check out the [Event-Writer](https://github.com/loveandpwns/Event-Writer) tool t
 
 ## Code Database
 
-Complete collection of community created Hunger Games event sets from the [Code Database](https://hgtools.neocities.org/static/codes), converted to standard format for use with this sim. 
+Complete collection of community created Hunger Games event sets from the [Code Database](https://hgtools.neocities.org/static/codes), converted to standard format for use with this sim.
 
 ### Download
 
@@ -69,7 +88,7 @@ Complete collection of community created Hunger Games event sets from the [Code 
 **[Default Code](https://github.com/loveandpwns/Event-Sim/releases/download/Defaul_Events/Brant.Default.zip)**
 
 **[Default Code With Flags](https://github.com/loveandpwns/Event-Sim/releases/download/Flags/Default.Events.With.Flags-AI.zip)**
-- Default Code With Flags is made entirely with Ai and is untested.
+- Default Code With Flags is made entirely with AI and is untested.
 
 ---
 
@@ -81,10 +100,12 @@ The simulator organizes tributes into districts (groups). You can choose from pr
 
 **Preset sizes:**
 
+* **1 tribute per district** Solo districts
 * **2 tributes per district** (default)
-* **3 tributes per district**  Larger districts
-* **4 tributes per district**  Even larger groups
-* **6 tributes per district**  Maximum preset size
+* **3 tributes per district** Larger districts
+* **4 tributes per district** Even larger groups
+* **5 tributes per district** Large groups
+* **6 tributes per district** Maximum preset size
 
 **Custom mode:**
 
@@ -94,23 +115,23 @@ The simulator organizes tributes into districts (groups). You can choose from pr
 
 ### How to Set District Size
 
-1. In the tribute input screen, locate the **"District Size"** dropdown menu
+1. In the setup page, locate the **"District Size"** dropdown menu
 2. Select your preferred option:
-   * `2`, `3`, `4`, or `6` for automatic equal distribution
+   * `1`, `2`, `3`, `4`, `5`, or `6` for automatic equal distribution
    * `Custom` for manual district assignment
 
 **Automatic mode:** Tributes are assigned to districts sequentially based on the size you choose. For example, with 12 tributes and district size 2:
 
-* District 1: Tributes 1–2
-* District 2: Tributes 3–4
-* District 3: Tributes 5–6
+* District 1: Tributes 1-2
+* District 2: Tributes 3-4
+* District 3: Tributes 5-6
 * And so on...
 
-**Custom mode:** Each tribute row will have an enabled district dropdown where you can manually select which district (1 through total number of tributes) that tribute belongs to.
+**Custom mode:** Each district has a spinbox where you can set how many tributes belong to it.
 
 ### Custom District Names
 
-You can customize district names under the **Customize** tab. Districts will display either:
+You can customize district names under the **Customize** menu. Districts will display either:
 
 * Your custom name (if specified)
 * `District [number]` (default)
@@ -127,71 +148,52 @@ To set custom names:
 
 ## Bonds
 
-The simulator supports a simple bond system that increases the likelihood of specific tributes appearing in events together.
+The simulator supports a bond system that increases the likelihood of specific tributes appearing in non-fatal events together.
 
 ### How It Works
 
-When creating tributes, you can specify a bond partner by entering their tribute number in the "Bond" field. Bonded tributes have a **50x higher chance** of being selected for the same event when both are:
+Bonded tributes have a **95% chance** of being selected together for non-fatal events when both are:
 - Alive
-- Available (not already used in another event that turn)
+- Available (not already used in another event that phase)
 - Compatible with the event requirements
+
+**Bonds only affect non-fatal event selection.** Fatal events treat all tributes equally regardless of bonds. This prevents bonded pairs from dying together at elevated rates.
 
 ### Setting Up Bonds
 
-1. Enter the number of tributes and click "Confirm"
-2. For each tribute, enter their bond partner's number in the "Bond" field
-   - Example: For Tribute 1 to bond with Tribute 2, enter "2" in Tribute 1's bond field and "1" in Tribute 2's bond field
-3. Bonds are manual - you must enter both sides of the partnership
-4. Click "Confirm All Tributes" to finalize
+**Drag and drop:** In the reaping preview, drag one tribute's portrait onto another to create a bond between them. A colored border indicates bonded tributes.
+
+**Right-click:** Right-click a bonded tribute's portrait to remove them from their bond group.
+
+**Manual entry:** When editing the roster, enter a bond partner's number in the "Bond" field for each tribute.
 
 ### Important Notes
 
-- Bonds increase the probability of tributes appearing in events together. Nothing is guaranteed.
-- Bonds currently only apply to two-player pairings.
-- Bonded tributes may not pair if one dies or acquires different continuity flags.
+- Bonds increase the probability of tributes appearing in non-fatal events together. Nothing is guaranteed.
+- Bonded tributes can still die. Bonds do not provide immunity.
+- Fatal events ignore bonds entirely. Every tribute has an equal chance of being selected for fatal events.
 - Bonds work independently of districts.
-- Bonded tributes are not immune to fatal events together or individually.
-- Bonds do not provide any immunity or protection mechanics.
-- Bonded tribute win-rates are not affected by flags.
-- Simple mode is designed for balanced gameplay without forced pairings.
+- If a bonded partner dies, the surviving tribute continues as normal.
 
-### Bond System Balance Update - October 30 2025
+---
 
-This investigation started after multiple people expressed concerns about the bond system. Several users indicated that they thought the bond system could be biased or detrimental to the outcome of the simulation. These concerns warranted extended testing as keeping the games as fair as possible is mandatory.
+## Bond Protection
 
-Since receiving this feedback, more than 40.4 million simulations have been run to validate the bond system's neutrality. That's approximately 930 million individual tribute deaths processed across hundreds of different test configurations.
+Bond protection is an optional mode that prevents bonded tributes from killing each other.
 
-The testing confirmed the users intuitions were correct. The bond system had a bias. Though the bias was small and most would never notice it, it had to be fixed.
+### Modes
 
-After running an initial 10 million simulations with 6 tributes, it was determined that there was a measurable 3.86 to 4.39 percentage point penalty for bonded pairs. The root cause was in the participant selection algorithm where the same weighted distribution was being applied to both normal and fatal events. This created an effect where bonded tributes would eliminate each other at higher rates rather than spreading eliminations across the entire tribute pool.
+- **Normal:** Bonded tributes group together for non-fatal events but CAN kill each other in fatal events. This is the default.
+- **Protected:** Bonded tributes group together for non-fatal events and can NEVER kill each other. If a fatal event would have a bonded tribute kill their partner, the event is rejected and a different one is selected.
 
-The fix isolated the weighting mechanic to non-fatal events only.
+### How to Enable
 
-Validation testing continued with multiple different combinations of tests. Results from 30 million additional simulations:
+1. In the sidebar, set the **Bond Protection** dropdown to **Protected**
+2. Set up bonds normally using drag-and-drop or manual entry
 
-#### 6-Tribute Games:
-- Neutral expectation for a bonded duo: 33.333%
-- Observed with 1 bonded pair: 33.799% (advantage: +0.466 pp to the pair, +0.233 pp per tribute)
-- Observed with 2 bonded pairs: 67.197% vs 66.667% neutral (advantage: +0.133 pp per tribute)
-- 3 bonded pairs: 0.000 pp difference (everyone is bonded)
+### Multi-Win Safety
 
-#### 24-Tribute Games:
-- Neutral expectation for a bonded duo: 8.333%
-- Observed with 1 bonded pair: 8.719% (advantage: +0.386 pp to the pair, +0.193 pp per tribute)
-- Observed with 2 bonded pairs: 17.348% vs 16.667% neutral (advantage: +0.170 pp per tribute)
-- 3 bonded pairs: 0.000 to 0.012 pp difference
-
-The original 3.86 to 4.39 percentage point penalty (measured in 6-tribute games) has been eliminated. 
-
-#### What This Means for YOU as a Player
-
-**After the fix:**
-- Expected wins per 100 games (single tribute): 4.17
-- Actual wins with bond: 4.36
-- Extra wins from bond: 0.19 wins out of 100 games
-- Impact: you will not notice this in your lifetime
-
-The remaining variance of 0.19 to 0.23 percentage points per bonded tribute (or 0.4 to 0.9 percentage points for entire bonded groups) is a small practical effect unavoidable without removing the narrative benefits of the bond system entirely. If you see this as an issue, touch grass.
+When bond protection is set to Protected, the engine automatically enables bond-based victory detection. If all remaining tributes are mutually bonded and protected, the game ends in a shared victory instead of stalling forever.
 
 ---
 
@@ -199,9 +201,9 @@ The remaining variance of 0.19 to 0.23 percentage points per bonded tribute (or 
 
 ### Simple Mode
 
-Bonds all tributes in the same district. Bonded tributes are 50x more likely to appear together in events.
+Bonds all tributes in the same district. Bonded tributes are more likely to appear together in non-fatal events.
 
-### Advanced Mode (Coming Soon)
+### Advanced Mode
 
 Assigns faction flags based on district number. Tributes in district 1 get `faction1`, district 2 get `faction2`, etc.
 
@@ -240,22 +242,20 @@ The simulator supports shared victory conditions, allowing multiple tributes to 
 
 ### How to Use
 
-1. In the main setup screen, set the **"Multi-Win"** dropdown to **"Yes"**
+1. In the sidebar, set the **"Multi-Win"** dropdown to **"Yes"**
 
 2. When Multi-Win is enabled, two checkboxes appear:
-- **Victory by District**: Check this to allow district based shared victories
-- **Victory by Bonds**: Check this to allow bond based shared victories
-- You can enable one, both, or neither (if neither is checked, multi-win is effectively disabled)
+   - **Victory by District**: Check this to allow district-based shared victories
+   - **Victory by Bonds**: Check this to allow bond-based shared victories
+   - You can enable one, both, or neither (if neither is checked, multi-win is effectively disabled)
 
 3. Set up your tributes normally using districts and/or bonds
 
-4. Run the simulation, the game will automatically end when all surviving tributes meet one of the enabled victory conditions
+4. Run the simulation. The game will automatically end when all surviving tributes meet one of the enabled victory conditions
 
 ---
 
 # Writing Events
-
-Please visit [Event-Writer](https://github.com/loveandpwns/Event-Writer) for a tool that helps you write events. 
 
 ## Basic Event Structure
 
@@ -264,8 +264,8 @@ Events are written in a text file that is based off of [Event Manager](https://h
 Every event follows a strict format that the event loader parses line by line:
 
 ```
-# requires: 
-# sets: 
+# requires:
+# sets:
 (Player1) walks around a spooky cemetery.
 1
 D
@@ -277,15 +277,15 @@ D
 2. `# sets:` - Flags that will be applied to tributes after the event executes
 3. Event text with player and pronoun placeholders
 4. Number of living tributes required
-5. `D` line - Number of "Ghosts" needed.
+5. `D` line - Number of ghosts needed
 
 ## Basic Events: No Flag Requirements
 
 When both `requires` and `sets` fields are empty, any unflagged tribute can participate.
 
 ```
-# requires: 
-# sets: 
+# requires:
+# sets:
 (Player1) finds a stick.
 1
 D
@@ -301,7 +301,7 @@ The `requires` field acts as a filter, restricting event participation to tribut
 
 ```
 # requires: spooked
-# sets: 
+# sets:
 (Player1) and (Player2) huddle together, still terrified.
 2
 D
@@ -313,7 +313,7 @@ Both Player1 and Player2 must have the `spooked` flag for this event to be eligi
 
 ```
 # requires: bloodlusted:1
-# sets: 
+# sets:
 (Player1) attacks (Player2) without mercy.
 2
 D
@@ -337,11 +337,13 @@ Player1 must have `spooked`, Player2 must have `brave`. Each participant has dis
 
 The `sets` field determines how tribute flags change after an event executes.
 
+**Important:** The `sets` field REPLACES all flags on a tribute, it does not add to them. If a tribute has `armed` and the event sets `wounded`, the tribute now has `wounded` only. If you want the tribute to keep `armed`, the event must set `armed,wounded`. This is intentional. It gives the event writer full control over what flags a tribute has at any point.
+
 ### Clearing All Flags
 
 ```
 # requires: spooked
-# sets: 
+# sets:
 (Player1) finally calms down.
 1
 D
@@ -352,7 +354,7 @@ An empty `sets` field removes all flags from participating tributes, resetting t
 ### Applying the Same Flag to All Participants
 
 ```
-# requires: 
+# requires:
 # sets: injured
 (Player1) trips and hurts (himself/herself1). (Player2) helps (him/her1) up but also gets hurt.
 2
@@ -364,7 +366,7 @@ Both tributes receive the `injured` flag after this event completes.
 ### Applying Different Flags to Specific Participants
 
 ```
-# requires: 
+# requires:
 # sets: killer:1
 (Player1) murders (Player2) in cold blood.
 2
@@ -397,7 +399,7 @@ The `D` line specifies how many deceased tributes the event requires. This enabl
 D
 ```
 
-Standard format
+Standard format.
 
 ### Events Requiring Dead Players
 
@@ -411,7 +413,7 @@ This event needs one living tribute and one dead tribute.
 **Example ghost event:**
 
 ```
-# requires: 
+# requires:
 # sets: spooked
 (Player1) sees the ghost of (Deadplayer1) and runs away in fear.
 1
@@ -435,26 +437,26 @@ Events with `0` living tributes and one or more dead tributes create atmospheric
 Events can be linked together through flags to create narrative progressions:
 
 ```
-# requires: 
+# requires:
 # sets: knife
 (Player1) finds a rusty knife.
 1
 D
 
 # requires: knife
-# sets: knife_3
+# sets: knife_sharp
 (Player1) sharpens (his/her1) knife on a strange-looking rock.
 1
 D
 
-# requires: knife_3
-# sets: 
+# requires: knife_sharp
+# sets:
 A hand shoots out of the strange rock and forcefully takes the knife from (Player1).
 1
 D
 ```
 
-The system tracks flags per tribute, allowing individual storylines to develop organically throughout the simulation.
+The system tracks flags per tribute, allowing individual storylines to develop organically throughout the simulation. A tribute who finds a knife in the Bloodbath can sharpen it on Day 1 and lose it on Night 1. Each step requires the previous flag and sets the next one.
 
 ## Advanced: OR Logic in Requirements
 
@@ -539,7 +541,7 @@ Flags work on dead tributes too. Dead tributes retain all their flags after deat
 
 ```
 # requires: bloodlusted:d1
-# sets: 
+# sets:
 (Player1) is haunted by the vengeful spirit of (Deadplayer1).
 1
 D 1
@@ -550,7 +552,7 @@ This event only fires if Deadplayer1 had the `bloodlusted` flag when alive or ha
 **Setting a flag on a dead tribute:**
 
 ```
-# requires: 
+# requires:
 # sets: cursed:d1
 (Player1) desecrates (Deadplayer1)'s grave, cursing their spirit.
 1
@@ -567,11 +569,13 @@ See the [Summary of Syntax](#summary-of-syntax) section for all dead tribute fla
 
 ## Best Practices
 
-* **Balance flagged and unflagged events** Too many flag requirements can starve the event pool
-* **Strategic flag clearing** Empty `sets` fields reset tributes, allowing them to qualify for more events
-* **Test continuity chains** Ensure flag progressions make logical sense
-* **Vary participant counts** Mix solo events with group events for good gameplay
-* **Consider flag persistence** Decide when flags should carry forward vs. clear after use
+* **Balance flagged and unflagged events.** Too many flag requirements can starve the event pool.
+* **Strategic flag clearing.** Empty `sets` fields reset tributes, allowing them to qualify for more events.
+* **Remember that sets replaces flags.** If a tribute should keep an existing flag through a new event, include it in the sets line.
+* **Test continuity chains.** Ensure flag progressions make logical sense and that every stage of a chain has both non-fatal and fatal events available.
+* **Vary participant counts.** Mix solo events with group events for variety.
+* **Consider flag persistence.** Decide when flags should carry forward vs. clear after use.
+* **Always provide unflagged events.** Flagged tributes can fall back to unflagged events if no matching flagged events exist. But if your unflagged pool is too small, gameplay gets repetitive.
 
 ---
 
@@ -590,7 +594,7 @@ See the [Summary of Syntax](#summary-of-syntax) section for all dead tribute fla
 | `# requires:` | `flag1:1 flag2:1` | Player1 needs both flags (AND) |
 | `# requires:` | `flag1:1 flag2\|flag3:2` | Player1 needs flag1, Player2 needs flag2 OR flag3 |
 | `# sets:` | *(empty)* | Clear all flags from participants |
-| `# sets:` | `flagname` | Give all participants this flag |
+| `# sets:` | `flagname` | Give all participants this flag (replaces existing flags) |
 | `# sets:` | `flagname:1` | Only Player1 receives this flag |
 | `# sets:` | `flag1:1,2` | Players 1 and 2 receive this flag |
 
@@ -611,15 +615,132 @@ See the [Summary of Syntax](#summary-of-syntax) section for all dead tribute fla
 
 ## Event Selection and Fallbacks
 
-The event loader prioritizes events in this order:
+The engine prioritizes events in this order:
 
-1. Events where all flag requirements are met
-2. Unflagged events (empty `requires` field)
-3. Random selection from available pool
+1. **Flagged events** that match the current tribute's flags
+2. **Unflagged events** if no matching flagged events exist
 
 **Important:** Flagged tributes can participate in unflagged fatal events. This prevents "immortal flag chains" where a tribute gets stuck in a loop of flagged non-fatal events and can never be eliminated.
 
-If a tribute has flags but no matching flagged events exist, they'll participate in unflagged events instead. To avoid repetitive fallback scenarios, maintain a diverse pool of both flagged and unflagged events.
+If a tribute has flags but no matching flagged events exist, they fall back to unflagged events. To avoid repetitive fallback scenarios, maintain a diverse pool of both flagged and unflagged events.
+
+---
+
+## Death Pacing
+
+The engine uses a budget and pressure system to control how many tributes die per phase. This prevents both massacres (everyone dying in the Bloodbath) and stalls (nobody dying for five phases in a row).
+
+### Death Mode
+
+Controls the overall lethality of the simulation. Set this in the sidebar before starting.
+
+| Mode | Description |
+|------|-------------|
+| **Low** | Slow burn. Few deaths per phase. Games last longer. |
+| **Medium** | Balanced. The default. |
+| **High** | Aggressive. More deaths, shorter games. |
+| **Very High** | Dangerous. Tributes drop fast. |
+| **Extreme** | Brutal. Most tributes won't survive long. |
+| **Nightmare** | Near-constant death. |
+| **Annihilation** | Maximum lethality. Games end quickly. |
+
+### How It Works
+
+Each phase, the engine calculates a **death budget** based on how many tributes are alive and the current death mode. This is a hard cap on deaths for that phase.
+
+Within that budget, a **pressure system** determines the probability of each individual event being fatal. Higher pressure means more fatal events are attempted.
+
+The Bloodbath always has elevated lethality compared to normal Day/Night phases.
+
+As the game approaches its end (final 5, final 3, final 2), the engine adjusts pacing to slow down and build tension rather than rushing to a conclusion.
+
+Every phase is guaranteed at least one death to prevent stalling, unless a multi-win condition is already met.
+
+---
+
+## Ghost Events
+
+Ghost events allow dead tributes to appear in events after they've been eliminated.
+
+### Ghost Mode
+
+Controls how frequently ghost events occur. Set this in the sidebar before starting.
+
+| Mode | Frequency |
+|------|-----------|
+| **None** | Ghosts never appear |
+| **Whisper** | Extremely rare |
+| **Extremely Low** | Very rare |
+| **Very Low** | Rare (default) |
+| **Low** | Occasional |
+| **Medium** | Moderate |
+| **High** | Frequent |
+
+Ghost probability scales with the number of dead tributes. More dead tributes means a slightly higher chance of ghost events firing.
+
+Ghost events do not fire in the late game (3 or fewer tributes alive) to avoid cluttering the endgame.
+
+### Writing Ghost Events
+
+See the [Dead Players and Ghost Events](#dead-players-and-ghost-events) section under Writing Events for the syntax.
+
+---
+
+## AI Commentator and Auto-Host
+
+The simulator can automatically post screenshots and AI-generated commentary to 4chan threads.
+
+### Requirements
+
+- A 4chan Pass (for posting)
+- An API key from one of the supported providers
+
+### Supported Providers
+
+| Provider | Models |
+|----------|--------|
+| **Groq** | Llama 3.3 70B, Llama 3.1 70B, Llama 3.1 8B, Mixtral 8x7B, Gemma2 9B |
+| **OpenAI** | GPT-4o, GPT-4o-mini, GPT-4 Turbo, GPT-3.5 Turbo |
+| **Anthropic** | Claude Sonnet, Claude Haiku |
+
+### How to Use
+
+1. Set up your tributes and load events as normal
+2. Go to **Tools > Auto Host**
+3. Enter your 4chan Pass ID and PIN
+4. Select a board and enter the thread number
+5. Select an AI provider, enter your API key, and choose a model
+6. Click **Start Auto Host**
+
+The auto-host will simulate the game phase by phase, take a screenshot of each phase, generate commentary using the AI, and post the screenshot with commentary to the thread. There is a built-in delay between posts to avoid rate limiting.
+
+### Logs Mode
+
+If you want to test the AI commentary without posting to a thread, type **"Logs"** in the thread field instead of a thread number. The auto-host will run normally but skip all 4chan posting. Commentary is saved to a log file in the save folder.
+
+### Commentary
+
+The AI generates 2-3 sentences of commentary per phase based on the events that occurred. It uses the correct pronouns for each tribute based on their gender setting. The commentary is written in the style of a battle royale commentator.
+
+---
+
+## Season Scraper
+
+Import tributes and events from existing BrantSteele seasons.
+
+### How to Use
+
+1. Go to the setup page and click **Load Season**
+2. Enter either:
+   - A season code (e.g., `XM8aErjk`)
+   - A full BrantSteele URL
+3. The scraper will detect whether it's an Original or Classic sim and download the season data
+4. Events are saved locally and loaded into the simulator automatically
+
+### Supported Sims
+
+- **BrantSteele Original** (brantsteele.net)
+- **BrantSteele Classic** (brantsteele.com/hungergames/classic)
 
 ---
 
@@ -643,8 +764,8 @@ GM_setValue("imgsStr", imgsStr.slice(0, -1));
 
 ```
 GM_setClipboard(
-    GM_getValue("nomsStr") + "\n" + 
-    GM_getValue("gensStr") + "\n" + 
+    GM_getValue("nomsStr") + "\n" +
+    GM_getValue("gensStr") + "\n" +
     GM_getValue("imgsStr")
 );
 alert("Tribute data copied to clipboard!");
@@ -668,58 +789,50 @@ Save the script.
 
 ### How to Use
 
-**In the Simulator**: Click "Import Tributes" and the data loads automatically.
+**In the Simulator**: Click "Import Tributes" and the data loads automatically from your clipboard.
 
 ---
 
-## Coming Soon
-
-| Feature | Description |
-|---------|-------------|
-| **Better Customization** | More granular control over simulator visuals, behavior, and user settings. |
-| **Advanced Bonds** | Advanced bond system. |
-| **Complex District Events** | District or faction-specific events that evolve based on shared traits and history. |
-| **Extra Events** | Support for Feast, Arena, and other special types of events. |
-
----
 ## Screenshots
 
-### Screenshots to highlight the customization features
-![Screenshot 1](https://i.imgur.com/P2aF19y.png)
-![Screenshot 2](https://i.imgur.com/CnSSf63.png)
-![Screenshot 3](https://i.imgur.com/xKYYXYB.png)
-![Screenshot 4](https://i.imgur.com/FLIbM3G.png)
-![Screenshot 5](https://i.imgur.com/LolakDi.png)
-![Screenshot 6](https://i.imgur.com/Etyvrjq.png)
+*Screenshots will be updated for v2.0.0.*
+
 ---
 
 ## FAQ
 
-## What is this?
+### What is this?
 A desktop Hunger Games-style event simulator. Inspired by BrantSteele but with more features and full offline support.
 
-## Is there a rig button?
+### Is there a rig button?
 No, a rig button does not exist and will never exist. No one has directly asked for one either. You know better than to believe anon fanfiction.
 
-## Can you prove it's not rigged?
-I ran 40+ million simulations validating the bond system alone to ensure fairness. The methodology is in the README.
+### Can you prove it's not rigged?
+I ran 40+ million simulations validating the bond system alone to ensure fairness. The methodology and results are documented in this README under the bond system section of the changelog.
 
-## I saw some source files. Where's the rest?
-The supporting files are visible. The core engine is compiled. That's intentional.
+### How do bonds work?
+Bonded tributes are more likely to appear in non-fatal events together. Fatal events treat everyone equally regardless of bonds. Bonds do not protect tributes from dying. They do not guarantee anything. They increase the odds of interaction, not survival.
 
-## How do bonds work?
-Bonded tributes are more likely to appear in events together. It doesn't protect them from dying. It doesn't guarantee anything. It just increases the odds they'll interact.
+### What is bond protection?
+An optional mode where bonded tributes cannot kill each other. This is separate from normal bonds. You have to enable it explicitly.
 
-## Someone is pretending to be you.
+### What are flags?
+Flags are tags that get attached to tributes during the simulation. Events can require specific flags and set new ones. This creates multi-phase storylines. For example, a tribute finds a weapon (sets `armed` flag), then a later event requires `armed` and has them use the weapon. See the [Writing Events](#writing-events) section.
+
+### How does the AI commentator work?
+It sends the events from each phase to an LLM (your choice of provider) and gets back 2-3 sentences of commentary. You need your own API key. Groq has a free tier.
+
+### Someone is pretending to be you.
 I post in the README. That's it.
 
 ---
+
 ## Contact
 
-**Author:** [loveandpwns](https://github.com/loveandpwns)  
-**Email:** [loveandpwns@gmail.com](mailto:loveandpwns@gmail.com)  
+**Author:** [loveandpwns](https://github.com/loveandpwns)
+**Email:** [loveandpwns@gmail.com](mailto:loveandpwns@gmail.com)
 **Discord:** `loveandpwns`
 
 ---
 
-> *Event-Sim © 2025  -  Created by loveandpwns
+> *Event-Sim © 2025 - Created by loveandpwns*
