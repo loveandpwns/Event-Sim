@@ -11,6 +11,7 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 
 ## IN PROGRESS
 **Simv2.0.0**
+**[Screenshots](#screenshots)**
 
 - Full system overhaul.
 - Complete UI rewrite. Dark theme, modern layout, cleaner workflow.
@@ -72,7 +73,6 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 - [Season Scraper](#season-scraper)
 - [Virginia's Userscript Compatibility](#virginias-userscript-compatibility)
 - [Screenshots](#screenshots)
-- [FAQ](#faq)
 - [Contact](#contact)
 
 ---
@@ -157,19 +157,19 @@ Bonded tributes have a **95% chance** of being selected together for non-fatal e
 - Available (not already used in another event that phase)
 - Compatible with the event requirements
 
-**Bonds only affect non-fatal event selection.** Fatal events treat all tributes equally regardless of bonds. This prevents bonded pairs from dying together at elevated rates.
+**Bonds only affect non-fatal event selection.** Fatal events treat all tributes equally regardless of bonds. Bonded pairs have no advantage over other tributes and 40 million test simulations prove this. 
 
 ### Setting Up Bonds
 
 **Drag and drop:** In the reaping preview, drag one tribute's portrait onto another to create a bond between them. A colored border indicates bonded tributes.
 
-**Right-click:** Right-click a bonded tribute's portrait to remove them from their bond group.
+**Right-click:** Right click a bonded tribute's portrait to remove them from their bond group.
 
 **Manual entry:** When editing the roster, enter a bond partner's number in the "Bond" field for each tribute.
 
 ### Important Notes
 
-- Bonds increase the probability of tributes appearing in non-fatal events together. Nothing is guaranteed.
+- Bonds increase the probability of tributes appearing in non fatal events together. Nothing is guaranteed.
 - Bonded tributes can still die. Bonds do not provide immunity.
 - Fatal events ignore bonds entirely. Every tribute has an equal chance of being selected for fatal events.
 - Bonds work independently of districts.
@@ -183,7 +183,7 @@ Bond protection is an optional mode that prevents bonded tributes from killing e
 
 ### Modes
 
-- **Normal:** Bonded tributes group together for non-fatal events but CAN kill each other in fatal events. This is the default.
+- **Normal:** Bonded tributes group together for non fatal events but CAN kill each other in fatal events. This is the default.
 - **Protected:** Bonded tributes group together for non-fatal events and can NEVER kill each other. If a fatal event would have a bonded tribute kill their partner, the event is rejected and a different one is selected.
 
 ### How to Enable
@@ -636,13 +636,13 @@ Controls the overall lethality of the simulation. Set this in the sidebar before
 
 | Mode | Description |
 |------|-------------|
-| **Low** | Slow burn. Few deaths per phase. Games last longer. |
-| **Medium** | Balanced. The default. |
-| **High** | Aggressive. More deaths, shorter games. |
-| **Very High** | Dangerous. Tributes drop fast. |
-| **Extreme** | Brutal. Most tributes won't survive long. |
-| **Nightmare** | Near-constant death. |
-| **Annihilation** | Maximum lethality. Games end quickly. |
+| **Low** | 
+| **Medium** | 
+| **High** | 
+| **Very High** | 
+| **Extreme** | 
+| **Nightmare** | 
+| **Annihilation** |
 
 ### How It Works
 
@@ -668,13 +668,13 @@ Controls how frequently ghost events occur. Set this in the sidebar before start
 
 | Mode | Frequency |
 |------|-----------|
-| **None** | Ghosts never appear |
-| **Whisper** | Extremely rare |
-| **Extremely Low** | Very rare |
-| **Very Low** | Rare (default) |
-| **Low** | Occasional |
-| **Medium** | Moderate |
-| **High** | Frequent |
+| **None** |
+| **Whisper** | 
+| **Extremely Low** | 
+| **Very Low** | 
+| **Low** | 
+| **Medium** |
+| **High** | 
 
 Ghost probability scales with the number of dead tributes. More dead tributes means a slightly higher chance of ghost events firing.
 
@@ -795,36 +795,11 @@ Save the script.
 
 ## Screenshots
 
-*Screenshots will be updated for v2.0.0.*
-
----
-
-## FAQ
-
-### What is this?
-A desktop Hunger Games-style event simulator. Inspired by BrantSteele but with more features and full offline support.
-
-### Is there a rig button?
-No, a rig button does not exist and will never exist. No one has directly asked for one either. You know better than to believe anon fanfiction.
-
-### Can you prove it's not rigged?
-I ran 40+ million simulations validating the bond system alone to ensure fairness. The methodology and results are documented in this README under the bond system section of the changelog.
-
-### How do bonds work?
-Bonded tributes are more likely to appear in non-fatal events together. Fatal events treat everyone equally regardless of bonds. Bonds do not protect tributes from dying. They do not guarantee anything. They increase the odds of interaction, not survival.
-
-### What is bond protection?
-An optional mode where bonded tributes cannot kill each other. This is separate from normal bonds. You have to enable it explicitly.
-
-### What are flags?
-Flags are tags that get attached to tributes during the simulation. Events can require specific flags and set new ones. This creates multi-phase storylines. For example, a tribute finds a weapon (sets `armed` flag), then a later event requires `armed` and has them use the weapon. See the [Writing Events](#writing-events) section.
-
-### How does the AI commentator work?
-It sends the events from each phase to an LLM (your choice of provider) and gets back 2-3 sentences of commentary. You need your own API key. Groq has a free tier.
-
-### Someone is pretending to be you.
-I post in the README. That's it.
-
+![Screenshot 1](https://i.imgur.com/Cme1y3f.png)
+![Screenshot 2](https://i.imgur.com/Hy6e8tX.png)
+![Screenshot 3](https://i.imgur.com/ioWDZ03.png)
+![Screenshot 4](https://i.imgur.com/14fkbhz.png)
+![Screenshot 5](https://i.imgur.com/IpGfrOm.png)
 ---
 
 ## Contact
