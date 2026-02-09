@@ -13,25 +13,22 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 **Simv2.0.0**
 **[Screenshots](#screenshots)**
 
+
+Below are new additions that ship with v2.
 - Full system overhaul.
 - Complete UI rewrite. Dark theme, modern layout, cleaner workflow.
 - Complete engine rewrite. 
 - EventWriter is now built into the main application.
-- Flag system with multi-phase event chains. Events can require and set flags, creating narrative arcs that span multiple phases. A tribute can find a weapon in Day 1 and use it to kill someone in Night 2.
-- AI commentator.
 - Auto-host mode. Posts screenshots and AI commentary directly to 4chan threads using a Pass and API key. 
 - Logs mode. Test auto host commentary without posting to a thread. Type "Logs" in the thread field.
 - Image loading progress. See which images are loading and how many remain. Right click a tribute's portrait to reload their image.
 - Visual bond system. Drag and drop tribute portraits to create bonds in the reaping preview.
 - Bond protection mode. Bonded tributes can optionally never kill each other.
 - Shared victory conditions. Victory by district, by bonds, or both.
-- Faction mode with automatic bonding and faction flags.
 - Season scraper. Import tributes and events from BrantSteele Classic and Experimental sims using a season code or URL.
-- Full customization system. Fonts, colors, borders, backgrounds, text effects, shadows, outlines, and more.
-- Death pacing system with budget and pressure controls. Seven difficulty modes from Low to Annihilation.
-- Ghost events with configurable frequency. Seven ghost modes from None to High.
+- Seven difficulty modes from Low to Annihilation.
+- Users can now set Ghost event rates.
 - No tribute name length limit.
-- Every setting tested to ensure no tribute, bonded pair, or flag chain has an unfair advantage.
 
 ## Changelog
 
@@ -79,16 +76,8 @@ A Python based event simulation engine. Heavily inspired by [Bransteele](https:/
 
 ## Code Database
 
-Complete collection of community created Hunger Games event sets from the [Code Database](https://hgtools.neocities.org/static/codes), converted to standard format for use with this sim.
-
-### Download
-
-**[Download All Codes (2.6 MB)](https://github.com/loveandpwns/Event-Sim/releases/download/Events/all_events.zip)**
-
-**[Default Code](https://github.com/loveandpwns/Event-Sim/releases/download/Defaul_Events/Brant.Default.zip)**
-
-**[Default Code With Flags](https://github.com/loveandpwns/Event-Sim/releases/download/Flags/Default.Events.With.Flags-AI.zip)**
-- Default Code With Flags is made entirely with AI and is untested.
+Simv2.X.X supports season from Brantsteele. Press the Load Season button, paste in your season code or link and load all of your events.
+This feature works with the old and new versions of the sim.
 
 ---
 
@@ -100,11 +89,11 @@ The simulator organizes tributes into districts (groups). You can choose from pr
 
 **Preset sizes:**
 
-* **1 tribute per district** Solo districts
-* **2 tributes per district** (default)
-* **3 tributes per district** Larger districts
-* **4 tributes per district** Even larger groups
-* **5 tributes per district** Large groups
+* **1 tribute per district** 
+* **2 tributes per district** Default preset size
+* **3 tributes per district** 
+* **4 tributes per district** 
+* **5 tributes per district** 
 * **6 tributes per district** Maximum preset size
 
 **Custom mode:**
@@ -152,12 +141,13 @@ The simulator supports a bond system that increases the likelihood of specific t
 
 ### How It Works
 
-Bonded tributes have a **95% chance** of being selected together for non-fatal events when both are:
+Bonded tributes have a high chance of being selected together for non-fatal events when both are:
 - Alive
 - Available (not already used in another event that phase)
 - Compatible with the event requirements
 
-**Bonds only affect non-fatal event selection.** Fatal events treat all tributes equally regardless of bonds. Bonded pairs have no advantage over other tributes and 40 million test simulations prove this. 
+**Bonds only affect non-fatal event selection unless bond protection is enabled.** Fatal events treat all tributes equally regardless of bonds. Bonded pairs have no advantage over other tributes and 40 million test simulations prove this. 
+
 
 ### Setting Up Bonds
 
